@@ -1,4 +1,5 @@
 require "blank_attributes/types/string"
+require "blank_attributes/types/array"
 
 module BlankAttributes
   class TypeHandler
