@@ -20,8 +20,19 @@ RSpec.configure do |config|
 end
 
 class User < ActiveRecord::Base
-  blank_attributes :name
+  attr_accessor :profile_ids
+  blank_attributes :name, :profile_ids
+
+  class << self
+    # Imitate an array type
+    def columns_hash
+      columns_in_hash = super()
+      columns_in_hash['profile_ids'] = OpenStruct.new(array: true)
+      columns_in_hash
+    end
+  end
 end
+
 
 def clean_database
   models = [User]

@@ -13,7 +13,6 @@ module BlankAttributes
     def normalize(attr_name)
       income_value = value(attr_name)
       attr_type = @object.class.columns_hash[attr_name.to_s]
-
       if attr_type.respond_to?(:array) && attr_type.array == true
         normalize_array(income_value)
       elsif STRING_TYPES.include?(attr_type.type)
