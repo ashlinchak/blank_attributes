@@ -3,15 +3,20 @@ require "blank_attributes/types/array"
 
 module BlankAttributes
   class TypeHandler
+    STRING_TYPES = [:string, :text]
+    ARRAY_TYPES = [:array]
+
     def initialize(object)
       @object = object
     end
 
     def normalize(attr_name)
       income_value = value(attr_name)
-      if @object.class.columns_hash[attr_name.to_s].array
+      attr_type = @object.class.columns_hash[attr_name.to_s]
+
+      if attr_type.respond_to?(:array) && attr_type.array == true
         normalize_array(income_value)
-      elsif @object.class.columns_hash[attr_name.to_s].type == :string
+      elsif STRING_TYPES.include?(attr_type.type)
         normalize_string(income_value)
       else
         income_value

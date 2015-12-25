@@ -2,7 +2,7 @@ $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'bundler/setup'
 require 'blank_attributes'
-# require 'pry-byebug'
+require 'pry-byebug'
 
 ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
 
@@ -11,6 +11,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.string :name
     t.string :email
     t.integer :age
+    t.text :description
     t.timestamps
   end
 end
