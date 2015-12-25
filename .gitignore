@@ -10,3 +10,4 @@
 .gemspec
 .ruby-version
 bin/
+*.gem

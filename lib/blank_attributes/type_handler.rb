@@ -8,7 +8,9 @@ module BlankAttributes
 
     def normalize(attr_name)
       income_value = value(attr_name)
-      if @object.class.columns_hash[attr_name.to_s].type == :string
+      if @object.class.columns_hash[attr_name.to_s].array
+        normalize_array(income_value)
+      elsif @object.class.columns_hash[attr_name.to_s].type == :string
         normalize_string(income_value)
       else
         income_value
@@ -18,6 +20,10 @@ module BlankAttributes
     end
 
     private
+
+    def normalize_array(income_value)
+      BlankAttributes::Types::Array.normalize(income_value)
+    end
 
     def normalize_string(income_value)
       BlankAttributes::Types::String.normalize(income_value)
