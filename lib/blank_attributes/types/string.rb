@@ -5,7 +5,7 @@ module BlankAttributes
       class << self
         def normalize(str)
           return nil if str.blank?
-          return str unless str.is_a?(String)
+          return str unless str.is_a?(::String)
           str
         end
       end
