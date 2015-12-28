@@ -34,7 +34,19 @@ user.name # => nil
 user.email # => nil
 user.token # => " "
 ```
-
+For preparing values there is used the `before_valid` callback.
+## Support Types
+- String
+```ruby
+"" # => nil
+" " # => nil
+```
+- Array
+```ruby
+[""] # => []
+[" "] # => []
+["", 1] # => [1]
+```
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/blank_attributes.
